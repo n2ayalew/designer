@@ -51,3 +51,36 @@
     background:rgba(0,0,0,1);
     text-decoration:none;
 }
+
+#tools {
+}
+
+#editor {
+    padding-bottom: 15px;
+}
+
+#canvas {
+    border: 1px dotted rgba(0, 0, 0, .5);
+    background:rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
+.thumbnail-prod {
+    float: left;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#prod-list {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+}
+
+.modal-form {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+
