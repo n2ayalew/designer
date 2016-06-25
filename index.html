@@ -63,9 +63,9 @@
 					<thead>
 					  <tr>
 						<ul class="nav nav-tabs" role="tablist">
-						<li class="col-sm-3"><a href="#"><img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg"height="20"> </a></li>
-						<li class="col-sm-3"><a href="#"><img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg"height="20"> </a></li>
-						<li class="col-sm-3"><a href="#"><img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg " height="20"> </a></li>
+						<li class="col-sm-3"><a class="product" id="0"><img src="assets/vendor/images/whitet.jpeg"height="70"> </a></li>
+						<li class="col-sm-3"><a class="product" id="1"><img src="assets/vendor/images/blackt.jpg"height="70"> </a></li>
+						<li class="col-sm-3"><a class="product" id="2"><img src="assets/vendor/images/whitet.jpeg" height="70"> </a></li>
 						</ul>
 					  </tr>
 					</thead>
@@ -81,7 +81,7 @@
 							
 
 						</td>
-						<td><button type="button" class="pull-right btn btn-info">
+						<td><button id="rotate-btn" type="button" class="pull-right btn btn-info">
 								<span class=" glyphicon glyphicon-share-alt">Rotate</span>
 								</button>
 								
@@ -120,7 +120,7 @@
 									<form method="POST" class="form-horizontal modal-form" role="form" action="#" id="designForm">
 										<div class="form-group">
 											<label for="fileInput" class="btn btn-default btn-file">Upload your design</label>
-											<input type="file" class="form-control" name="fileInput" id="fileInput" style="display:none;"/>
+											<input type="file" class="form-control" name="fileInput" id="fileInput" style="display:none;" onchange="handleFiles(this.files)"/>
 										</div>
 							
 									</form>
@@ -136,6 +136,7 @@
 									<h4 class="modal-title">Add Your text here </h4>
 								</div>
 							<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
+							<button type="button" class="btn btn-default" id="addText-btn">Apply</button>
 						</div>
 						</form>
 						  </div>
