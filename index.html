@@ -27,50 +27,134 @@
 			<div class="row">
 				<div class="col-sm-9">
 					<div class="center-block text-center" id="prod-list">
-						<h5>Choose Your Canvas</h5>
+				
+						<!--
 						<div class="thumbnail-prod text-center" class="thumbnail">
 							<a href="#">
 								Add Imge
-								<!-- <img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg" height="50" width="50"> -->
+								<img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg" height="50" width="50"> 
 							</a>
 							<div class="caption">Caption</div>
 						</div>
 						<div class="thumbnail-prod text-center" class="thumbnail">
 							<a href="#">
 								Add Image
-								<!-- <img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg" height="50" width="50"> -->
+								<img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg" height="50" width="50"> 
 							</a>
 							<div class="caption">Caption</div>
 						</div>
 						<div class="thumbnail-prod text-center" class="thumbnail">
 							<a href="#">
 								add image
-								<!-- <img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg" height="50" width="50"> -->
+								<img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg" height="50" width="50"> 
 							</a>
 							<div class="caption">Caption</div>
+							-->
 						</div>
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
-				<div class="col-sm-9" id="editor">
-					<div id="canvas-overlay"><canvas id="canvas" height="500" width="450" class="center-block">
-					</canvas></div>
+				<div class="col-sm-8" id="editor">
+								
+								
+				<table class="table">
+					<thead>
+					  <tr>
+						<ul class="nav nav-tabs" role="tablist">
+						<li class="col-sm-3"><a href="#"><img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg"height="20"> </a></li>
+						<li class="col-sm-3"><a href="#"><img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg"height="20"> </a></li>
+						<li class="col-sm-3"><a href="#"><img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg " height="20"> </a></li>
+						</ul>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+					  
+						<td><div id="canvas-overlay">
+							<canvas id="canvas" height="500" width="550" class="center-block"></canvas>
+													       
+								
+						
+							</div>
+							
+
+						</td>
+						<td><button type="button" class="pull-right btn btn-info">
+								<span class=" glyphicon glyphicon-share-alt">Rotate</span>
+								</button>
+								
+						</td>
+	
+					  </tr>
+					  <tr>
+							 <td>
+							 </td>
+							<td>
+								<button type="button" class="pull-right btn btn-primary">Submit your Design</button>
+							</td>
+						</tr>
+					</tbody>
+				  </table>
+				  	
+				  
+				  
+				 
+					
 				</div> 
-				<div class="col-sm-3" id="tools">
+				<div class="col-sm-4" id="tools">
 					 <table class="table" style="height:500px">
-					    <thead>
-					      <tr>
-					        <th>Your Tools</th>
-					      </tr>
-					    </thead>
+					   
 					    <tbody>
-					      <tr style="height:50%">
-					        <td ><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addTextModal">Add Quote</button></td>
-					      </tr>
-					      <tr style="height:50%">
-					        <td ><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addDesignModal">Add design</button></td>
-					      </tr>
+					    <ul class="nav nav-tabs">
+						  <li class="active"><a data-toggle="tab" href="#home">Add Art</a></li>
+						  <li><a data-toggle="tab" href="#menu1">Add txt</a></li>
+						  <li><a data-toggle="tab" href="#menu2">Add name</a></li>
+						</ul>
+
+						<div class="tab-content">
+						  <div id="home" class="tab-pane fade in active">
+								
+								<div class="modal-body">
+									<form method="POST" class="form-horizontal modal-form" role="form" action="#" id="designForm">
+										<div class="form-group">
+											<label for="fileInput" class="btn btn-default btn-file">Upload your design</label>
+											<input type="file" class="form-control" name="fileInput" id="fileInput" style="display:none;"/>
+										</div>
+							
+									</form>
+								</div>
+							
+		
+						  </div>
+						  <div id="menu1" class="tab-pane fade">
+							
+						<form method="POST" action="#" role="form" class="form-horizontal modal-form" id="textForm">
+						<div class="form-group">
+								<div class="modal-header">
+									<h4 class="modal-title">Add Your text here </h4>
+								</div>
+							<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
+						</div>
+						</form>
+						  </div>
+						  <div id="menu2" class="tab-pane fade">
+							<form method="POST" action="#" role="form" class="form-horizontal modal-form" id="textForm">
+							<div class="form-group">
+								<div class="modal-header">
+									<h4 class="modal-title">Add Your name here </h4>
+								</div>
+								<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
+								<div class="modal-header">
+									<h4 class="modal-title">Add Your number here </h4>
+								</div>
+								<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
+							</div>
+							
+							</form>
+						  </div>
+						</div>
 					    </tbody>
 					  </table>
 				</div>
@@ -131,35 +215,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="addDesignModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Your Beautiful Design</h4>
-				</div>
-				<div class="modal-body">
-					<form method="POST" class="form-horizontal modal-form" role="form" action="#" id="designForm">
-						<div class="form-group">
-							<label for="fileInput" class="btn btn-default btn-file">Upload Image</label>
-							<input type="file" class="form-control" name="fileInput" id="fileInput" style="display:none;"/>
-						</div>
-						<div class="form-group">
-							<label for="designDest">Desination of Design</label>
-							<select class="form-control" id="designDest" name="designDest">
-								<option>test 1</option>
-								<option>test 2</option>
-							</select>
-						</div>
-						<button type="button" class="btn btn-default" type="submit" >Submit</button>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<div class="popup" data-popup="popup-1">
 	    <div class="popup-inner">
 	        <h2>Reward Explanation</h2>
