@@ -24,11 +24,12 @@
 				</nav>
 		</header>
 		<div class="container-fluid">
+		<!--
 			<div class="row">
 				<div class="col-sm-9">
 					<div class="center-block text-center" id="prod-list">
 				
-						<!--
+						
 						<div class="thumbnail-prod text-center" class="thumbnail">
 							<a href="#">
 								Add Imge
@@ -49,12 +50,17 @@
 								<img src="http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg" height="50" width="50"> 
 							</a>
 							<div class="caption">Caption</div>
-							-->
+							
 						</div>
 					</div>
 				</div>
+				<div class="col-sm-3">
+				</div>
 			</div>
 
+		-->
+			
+			
 			<div class="row">
 				<div class="col-sm-8" id="editor">
 								
@@ -72,8 +78,10 @@
 					<tbody>
 					  <tr>
 					  
-						<td><div id="canvas-overlay">
-							<canvas id="canvas" height="500" width="550" class="center-block"></canvas>
+						<td>
+						
+							<div id="canvas-overlay">
+								<canvas id="canvas" height="500" width="550" class="center-block"></canvas>
 													       
 								
 						
@@ -81,9 +89,22 @@
 							
 
 						</td>
-						<td><button id="rotate-btn" type="button" class="pull-right btn btn-info">
+						<td>
+							<!--
+							<button id="rotate-btn" type="button" class="pull-right btn btn-info">
 								<span class=" glyphicon glyphicon-share-alt">Rotate</span>
-								</button>
+							</button>
+							-->
+							  <div class="dropdown">
+								<button class="pull-right btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Views
+								<span class=" glyphicon glyphicon-share-alt"></span></button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+								  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Front view</a></li>
+								  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Left view</a></li>
+								  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Back view</a></li>
+								  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Right view</a></li>
+								</ul>
+							  </div>
 								
 						</td>
 	
@@ -94,7 +115,7 @@
 							<td>
 								<button type="button" class="pull-right btn btn-primary">Submit your Design</button>
 							</td>
-						</tr>
+					  </tr>
 					</tbody>
 				  </table>
 				  	
@@ -104,18 +125,16 @@
 					
 				</div> 
 				<div class="col-sm-4" id="tools">
-					 <table class="table" style="height:500px">
-					   
-					    <tbody>
+
 					    <ul class="nav nav-tabs">
 						  <li class="active"><a data-toggle="tab" href="#home">Add Art</a></li>
-						  <li><a data-toggle="tab" href="#menu1">Add txt</a></li>
-						  <li><a data-toggle="tab" href="#menu2">Add name</a></li>
+						  <li><a data-toggle="tab" href="#menu1">Add text</a></li>
+						  <li><a data-toggle="tab" href="#menu2">Add Name</a></li>
 						</ul>
 
 						<div class="tab-content">
 						  <div id="home" class="tab-pane fade in active">
-								
+								<!--
 								<div class="modal-body">
 									<form method="POST" class="form-horizontal modal-form" role="form" action="#" id="designForm">
 										<div class="form-group">
@@ -125,24 +144,220 @@
 							
 									</form>
 								</div>
+							-->
 							
+									<div class="modal-content">
+											<div class="modal-header">
+												<form method="POST" class="form-horizontal modal-form" role="form" action="#" id="designForm">
+													<div class="form-group">
+														<label for="fileInput" class="btn btn-default btn-file">Upload your design</label>
+														<input type="file" class="form-control" name="fileInput" id="fileInput" style="display:none;" onchange="handleFiles(this.files)"/>
+													</div>
+										
+												</form>
+											
+											</div>
+
+											<div class="modal-body">
+											  
+											  <p>Flags go here </p>
+											
+											  
+											</div>
+											
+											<div class="modal-footer">
+												<form>
+												  <button type="button" class="btn btn-default" id="addText-btn">Apply</button>
+												</form>
+											</div>
+										
+										
+									  
+									</div>
 		
 						  </div>
 						  <div id="menu1" class="tab-pane fade">
-							
-						<form method="POST" action="#" role="form" class="form-horizontal modal-form" id="textForm">
-						<div class="form-group">
-								<div class="modal-header">
-									<h4 class="modal-title">Add Your text here </h4>
+						  			 <div class="modal-content">
+
+										<div class="modal-body">
+											  
+											  <form>
+											  <div class="form-group">
+												<label for="exampleInputEmail1">Add Text</label>
+											<div class="input-group">
+											  <div class="input-group-btn">
+												<button class=" btn btn-default" aria-label="Bold"><span class="glyphicon glyphicon-bold"></span></button>
+												<button class=" btn btn-default" aria-label="italic"><span class="glyphicon glyphicon-italic"></span></button>
+											  </div>
+											  <input type="text" name="textEntry" id="textEntry" class="form-control" aria-label=""></input>
+											</div>
+											  </div>
+											 <div class="form-group">
+													<table  class="table table-borderless"> 
+															<tbody>
+															<tr>
+															<td>
+																<div class="dropdown">
+																  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+																	Change color
+																	<span class="caret"></span>
+																  </button>
+																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																	<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(0,0,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(64,0,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,64,64)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,0,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,128)"type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(128,128,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,64,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,64)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,255,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,255,0)"type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(128,128,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,64,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,255,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,255,128)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(128,128,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,64,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,128)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(64,128,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,64,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,255,255)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(192,192,192)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,160)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,128,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,192)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,255)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(64,0,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(64,64,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,128,192)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,192)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(255,255,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(64,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,0,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,255)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																  </ul>
+															
+															</td>
+															<td>
+																<div class="dropdown">
+																  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+																	Dropdown
+																	<span class="caret"></span>
+																  </button>
+																  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																	<li><a href="#">Action</a></li>
+																	<li><a href="#">Another action</a></li>
+																	<li><a href="#">Something else here</a></li>
+																	<li role="separator" class="divider"></li>
+																	<li><a href="#">Separated link</a></li>
+																  </ul>
+																</div>
+															</td>
+															</tr>
+															<tr>
+															<td></td>
+															</tr>
+															<tr>
+																<td>
+																<div class="input-group">
+																  <span class="input-group-btn">
+																	<button class="btn btn-default" type="button">Rotate(0-360)</button>
+																  </span>
+																  <input type="text" class="form-control">
+																</div>
+																
+																</td>
+																<td>
+																<button class="btn btn-default" type="button">Move to the center</button>
+																
+																</td>
+															</tr>
+															
+															
+															</tbody>
+													
+													</table>
+											 </div>
+										  
+										</div>
+										
+										<div class="modal-footer">
+										  <button type="button" class="btn btn-default" id="addText-btn">Apply</button>
+										</div>
+										</form>
+									  
+									</div>
+							<!--
+								<form method="POST" action="#" role="form" class="form-horizontal modal-form" id="textForm">
+								<div class="form-group">
+										<div class="modal-header">
+											<h4 class="modal-title">Add Your text here </h4>
+										</div>
+									<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
+									<button type="button" class="btn btn-default" id="addText-btn">Apply</button>
 								</div>
-							<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
-							<button type="button" class="btn btn-default" id="addText-btn">Apply</button>
-						</div>
-						</form>
+								</form>
+								-->
 						  </div>
 						  <div id="menu2" class="tab-pane fade">
-							<form method="POST" action="#" role="form" class="form-horizontal modal-form" id="textForm">
-							<div class="form-group">
+							<!--
+							
 								<div class="modal-header">
 									<h4 class="modal-title">Add Your name here </h4>
 								</div>
@@ -151,13 +366,199 @@
 									<h4 class="modal-title">Add Your number here </h4>
 								</div>
 								<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
-							</div>
+								<div class="modal-body">
+										<table  class="table"> 
+										<tbody>
+										<tr>
+										<td>
+										
+										
+										</td>
+										<td></td>
+										</tr>
+										
+										
+										</tbody>
+										
+										</table>
+									
+									
+								</div>
+							-->
+							    
+									 <div class="modal-content">
+
+										<div class="modal-body">
+										  
+										  <form>
+										  <div class="form-group">
+											<label for="exampleInputEmail1">Add Name</label>
+											<div class="input-group">
+											  <div class="input-group-btn">
+												<button class=" btn btn-default" aria-label="Bold"><span class="glyphicon glyphicon-bold"></span></button>
+												<button class=" btn btn-default" aria-label="italic"><span class="glyphicon glyphicon-italic"></span></button>
+											  </div>
+											  <input type="text" name="textEntry" id="textEntry" class="form-control" aria-label=""></input>
+											</div>
+											
+										  </div>
+										  <div class="form-group">
+											<label for="exampleInputEmail1">Add Number</label>
+											<input type="text" name="textEntry" id="textEntry" class="form-control"></input>
+										  </div>
+										 <div class="form-group">
+												<table  class="table table-borderless"> 
+														<tbody>
+														<tr>
+														<td>
+															<div class="dropdown">
+															  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+																Change color
+																<span class="caret"></span>
+															  </button>
+															<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																	<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(0,0,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(64,0,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,64,64)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,0,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,128)"type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(128,128,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,64,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,64)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,255,0)"type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,255,0)"type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(128,128,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,64,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,255,0)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,255,128)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(128,128,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,64,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,128)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(64,128,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,64,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,255,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,255,255)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(192,192,192)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,0,160)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,128,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,192)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(0,128,255)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(64,0,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(64,64,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,64)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,128,192)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,192)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																																		<li>
+																	<div class="btn-group" role="group">
+																	  <button style="background-color:rgb(255,255,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(64,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(128,0,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,0,128)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,0,255)" type="button" class="btn btn-default">&nbsp;</button>
+																	  <button style="background-color:rgb(255,128,255)" type="button" class="btn btn-default">&nbsp;</button>
+										
+																	</div>
+																	</li>
+																  </ul>
+														</div>
+														
+														</td>
+														<td>
+															<div class="dropdown">
+															  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+																Fonts
+																<span class="caret"></span>
+															  </button>
+															  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																<li><a style="font-family:Palatino Linotype, Book Antiqua, Palatino, serif"  href="#">Action</a></li>
+
+															  </ul>
+															</div>
+														</td>
+														</tr>
+														<tr>
+														<td></td>
+														</tr>
+														<tr>
+															<td>
+															<div class="input-group">
+															  <span class="input-group-btn">
+																<button class="btn btn-default" type="button">Rotate(0-360)</button>
+															  </span>
+															  <input type="text" class="form-control">
+															</div>
+															
+															</td>
+															<td>
+															<button class="btn btn-default" type="button">Move to the center</button>
+															
+															</td>
+														</tr>
+														
+														
+														</tbody>
+												
+												</table>
+										 </div>
+										  
+										</div>
+										
+										<div class="modal-footer">
+										  <button type="button" class="btn btn-default" id="addText-btn">Apply</button>
+										</div>
+										</form>
+									  
+									</div>
 							
-							</form>
 						  </div>
 						</div>
-					    </tbody>
-					  </table>
+
 				</div>
 			</div>
 		</div>
@@ -186,7 +587,7 @@
 		
 		
 		</footer>
-		
+	<!--	
 	<div id="addTextModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -216,6 +617,7 @@
 			</div>
 		</div>
 	</div>
+	-->
 
 	<div class="popup" data-popup="popup-1">
 	    <div class="popup-inner">
