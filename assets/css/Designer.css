@@ -116,7 +116,17 @@ ul.scroll-menu {
     -ms-box-shadow:none;
     -o-box-shadow:none;
     box-shadow:none
-	    height: auto;
+	   height: auto;
     max-height: 200px;
     overflow-x: hidden;
 }
+.modal_scroll {  
+	overflow-x:hidden;
+     max-height:380px;
+    overflow-y: scroll;
+	 -webkit-overflow-scrolling:touch;
+    -moz-overflow-scrolling:touch;
+    -ms-overflow-scrolling:touch;
+    -o-overflow-scrolling:touch;
+    overflow-scrolling:touch;
+}​
