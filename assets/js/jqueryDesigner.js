@@ -89,6 +89,7 @@ $(document).ready(function (){
 	init();
 	//-------- OPEN POPUP----------------------
     //$('[data-popup=popup-1]').fadeIn(350);
+	//$("input").css('z-index', 0);
 	//----- CLOSE POPUP--------------------
     //$('[data-popup-close]').on('click', function(e)  {
         //$('[data-popup=popup-1]').fadeOut(350);
