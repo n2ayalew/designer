@@ -3,13 +3,12 @@
 */ 
 //var canvas = document.getElementById("canvas");
 
-var cnvs = new fabric.Canvas('canvas');
-var ctx = cnvs.getContext("2d");
+var canvas = new fabric.Canvas('canvas');
 
 var prodxmin,prodymin,prodxmax,prodymax,
     textDisplayed, designText, rotateCnt, imgLoaded, mouseDown, textx, texty, dragok, textMetircObj, fontSize, font,
     scalex, scaley, designx,designy,designw,designh, design, designLoaded, ddragok, outOfFrame, moffsetx, moffsety, imgoffset,
-    prevx, prevy; 
+    prevx, prevy, prodImage, prodImageScale, prodLimtis; 
 
 /*
 	- Array of image paths for each product ... there is only three for now
@@ -19,21 +18,13 @@ var productImageArray, currentProdIndex, loadedProdImage;
 
 function init() {
 
-	var rect = new fabric.Rect({
-  		left: 100,
-  		top: 100,
-  		fill: 'red',
-  		width: 20,
-  		height: 20
-	});
-	cnvs.add(rect);
+	prodImageScale = 0.4
 	startx = 0.25 * canvas.width;
 	starty = 0.25 * canvas.height;
 	scalex = 0.4;
 	scaley = 0.4;
 	designx = 0.45 * canvas.width;
 	designy = 0.45 * canvas.height;
-	//productImageArray = [['../Pictures/curiosity.jpg'],['../Pictures/12.jpg']];
 	loadedProdImage = new Image();
 	design = new Image();
 	currentProdIndex = -1;
@@ -42,38 +33,15 @@ function init() {
 	rotateCnt = 0;
 	rotateCntMax = $('.product').length;
 	imgLoaded = false;
-	ctx.textBaseline = "hanging";
-	ctx.font = "24px Tahoma, Geneva, sans-serif";
+	//ctx.textBaseline = "hanging";
+	//ctx.font = "24px Tahoma, Geneva, sans-serif";
 	dragok = false;
 	designLoaded = false;
 	ddragok = false;
 	fontSize = 24;
-	window.requestAnimationFrame(draw);
+	//window.requestAnimationFrame(draw);
 }
 
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-    };
-}
-
-function moveText(e){
-	if (dragok) {
-		var cord = getMousePos(canvas, e);
-		textx = cord.x;
-		texty = cord.y;
-	}
-}
-
-function moveDesign(e) {
-	if (ddragok && !outOfFrame) {
-		var cord = getMousePos(canvas, e);
-		designx = cord.x;// - prevx;
-		designy = cord.y;// - prevy;
-	}
-}
 
 function handleFiles(files) {
 	var file = files[0];
@@ -83,7 +51,28 @@ function handleFiles(files) {
 	design.src =  '../../Pictures/' +  file.name;
 	designLoaded = true;
 	
-	
+	canvasDesign = new fabric.Image(design, {
+		left: designx,
+		top: designy,
+		width: designh,
+		height: designw
+	});
+
+	canvas.add(canvasDesign);
+
+	// canvas.on("object:moving", function(){
+ //    	var obj = this.canvasDesign;
+ //    	var bounds = boundingObject;
+ //    	obj.setCoords();
+ //    	if(!obj.isContainedWithinObject(bounds)){
+ //        	obj.setTop(goodtop);
+ //        	obj.setLeft(goodleft);
+ //        	canvas.refresh();    
+ //    	} else {
+ //        	goodtop = obj.top;
+ //        	goodleft = obj.left;
+ //    	}  
+	// });
 }
 $(document).ready(function (){
 	init();
@@ -95,10 +84,11 @@ $(document).ready(function (){
         //$('[data-popup=popup-1]').fadeOut(350);
  
         //e.preventDefault();
-        $('#canvas').css('background', 'rgba(0,0,0,0)');
+    
     //});
 
 	$('.product').click(function (){
+		canvas.clear();
 		rotateCnt = 0;
 		currentProdIndex = parseInt($(this).attr('id'));
 		loadedProdImage.src = $(this).find('img').attr('src');
@@ -111,9 +101,35 @@ $(document).ready(function (){
 		prodxmax = imgw + startx - 0.15 * imgw;
 		prodymax = imgh + starty - 0.15 * imgh;
 		imgLoaded = true;
-		
 		designw = scalex  * 0.3 * loadedProdImage.width;
-		designh = scaley  * 0.3 * loadedProdImage.height;
+		designh = scaley  * 0.3 * loadedProdImage.height;	
+		
+		if ( imgLoaded && currentProdIndex >= 0) {
+
+			prodImage = new fabric.Image(loadedProdImage,{
+				left: startx,
+				top: starty,
+				hoverCursor: 'pointer'
+			});
+			prodImage.scale(prodImageScale);
+			prodImage.set('selectable', false);
+
+			prodLimtis = new fabric.Rect({
+				left: prodxmin,
+				top: prodymin,
+				width: prodxmax - prodxmin,
+				height: prodymax - prodymin,
+				fill: 'rgba(0,0,0,0)',
+				stroke: 'black',
+				strokeWidth: 1,
+				hoverCursor: 'pointer'
+			});
+
+			prodLimtis.set('selectable', false);
+			canvas.add(prodImage);
+			canvas.add(prodLimtis);
+		}
+
 		//loadedProdImage.src = productImageArray[currentProdIndex][rotateCnt];
 		// we should use the load event listener when we are loading from server
 
@@ -137,110 +153,18 @@ $(document).ready(function (){
 		ctx.fillText(designText, textx, texty);
 	});
 
+	
 
-	$('#canvas').mousemove(function (e){
-		var cord = getMousePos(canvas, e);
-
-		//console.log('x pos: ' + cord.x + 'y pos: ' + cord.y);
-
-
-		var dx = cord.x - prevx;
-		var dy = cord.y - prevy;
-		
-		if (designx < cord.x && cord.x < designx + designw && designy < cord.y && cord.y < designy + designh) {
-			$('#canvas').css('cursor', 'pointer');
-		} else {
-			$('#canvas').css('cursor','auto');
-			ddragok = false;
-		}
-
-		outOfFrame = false;
-		
-		//console.log('adfadsf');
-		if (e.which == 1 &&
-				textx < cord.x && cord.x < textx + textMetircObj.width
-				&& texty < cord.y && cord.y < texty + fontSize && !outOfFrame) {
-			textx = (cord.x - prevx) + textx 
-			texty = (cord.y - prevy) + texty;
-			dragok = true;
-			canvas.onmousemove = moveText;
-			//console.log('x pos:' + textx + 'y pos:' + texty);
-		}
-
-		if (e.which == 1 &&
-				designx < cord.x && cord.x < designx + designw
-				&& designy < cord.y && cord.y < designy + designh) {
-			
-			if ( (designx + dx) < prodxmin || cord.x < prodxmin) {
-				designx = prodxmin;
-				ddragok = false;
-				canvas.onmousemove = null;
-				outOfFrame = true;
-			} 
-
-			if ( (designx + designw) + dx > prodxmax || cord.x > prodxmax) {
-				designx = prodxmax - designw;
-				ddragok = false;
-				canvas.onmousemove = null;
-				outOfFrame = true;
-			}
-
-			if ( (designy + dy) < prodymin || cord.y < prodymin) {
-				designy = prodymin;
-				ddragok = false;
-				canvas.onmousemove = null;
-				outOfFrame = true;
-			}
-
-			if ( (designy + designh) + dy > prodymax || cord.y > prodymax) {
-				designy = prodymax - designh;
-				ddragok = false;
-				canvas.onmousemove = null;
-				outOfFrame = true;
-			}
-
-
-			if (!outOfFrame) {
-				designx = (cord.x - prevx) + designx;
-				designy = (cord.y - prevy) + designy;
-				ddragok = true;
-				canvas.onmousemove = moveDesign;
-			}
-		}
-
-		prevx = cord.x;
-		prevy = cord.y;
-		
-	});
-	$('#canvas').mouseup(function(e){
-		//outOfFrame = false;
-		dragok = false;
-		ddragok = false;
-		canvas.onmousemove = null;
-	});
 });
 
-// function draw() {
-	
-// 	//ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-// 	if ( imgLoaded && currentProdIndex >= 0) {
-// 		var imgw = loadedProdImage.width * scalex;
-// 		var imgh = loadedProdImage.height * scaley;
-// 		ctx.drawImage(loadedProdImage, startx , starty, imgw, imgh);
-// 		ctx.beginPath();
-// 		ctx.rect(prodxmin, prodymin,prodxmax - prodxmin,prodymax - prodymin);
-// 		ctx.stroke();
-// 	}
 // 	if (textDisplayed) {
 // 			ctx.fillText(designText, textx, texty);
 // 	}
 // 	if(designLoaded){
 // 		ctx.drawImage(design, designx, designy, designw, designh)
 // 	}
-	
-// 	window.requestAnimationFrame(draw);
-// }
+
 
 
 
