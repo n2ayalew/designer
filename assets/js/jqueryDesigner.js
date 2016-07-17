@@ -33,13 +33,10 @@ function init() {
 	rotateCnt = 0;
 	rotateCntMax = $('.product').length;
 	imgLoaded = false;
-	//ctx.textBaseline = "hanging";
-	//ctx.font = "24px Tahoma, Geneva, sans-serif";
 	dragok = false;
 	designLoaded = false;
 	ddragok = false;
 	fontSize = 24;
-	//window.requestAnimationFrame(draw);
 }
 
 
@@ -60,19 +57,7 @@ function handleFiles(files) {
 
 	canvas.add(canvasDesign);
 
-	// canvas.on("object:moving", function(){
- //    	var obj = this.canvasDesign;
- //    	var bounds = boundingObject;
- //    	obj.setCoords();
- //    	if(!obj.isContainedWithinObject(bounds)){
- //        	obj.setTop(goodtop);
- //        	obj.setLeft(goodleft);
- //        	canvas.refresh();    
- //    	} else {
- //        	goodtop = obj.top;
- //        	goodleft = obj.left;
- //    	}  
-	// });
+
 }
 $(document).ready(function (){
 	init();
@@ -133,6 +118,22 @@ $(document).ready(function (){
 		//loadedProdImage.src = productImageArray[currentProdIndex][rotateCnt];
 		// we should use the load event listener when we are loading from server
 
+	});
+
+	canvas.on('object:moving', function(options){
+
+		if (options.target.getLeft() < prodxmin){
+			options.target.left = prodxmin;
+		}
+		if (options.target.getLeft() + ( options.target.getWidth() * options.target.getScaleX() ) > prodxmax){
+			options.target.left = prodxmax - options.target.getWidth() * options.target.getScaleX();
+		}
+		if (options.target.getTop() < prodymin){
+			options.target.top = prodymin;
+		}
+		if (options.target.getTop() + ( options.target.getHeight() * options.target.getScaleY() ) > prodymax){
+			options.target.top = prodymax - options.target.height * options.target.getScaleY();
+		}
 	});
 	
 	$('#rotate-btn').click(function (){
