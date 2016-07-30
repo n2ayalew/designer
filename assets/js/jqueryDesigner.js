@@ -16,6 +16,107 @@ var prodxmin,prodymin,prodxmax,prodymax,
 */
 var productImageArray, currentProdIndex, loadedProdImage;
 
+
+var loading = false; //infinity scroll variable
+var counter=19; //infinity scroll
+
+
+function group(el,number){
+
+	//console.log(counter,el)
+	counter = counter-1;
+	
+	if([36,58,81,117,153,160,176,188,194,242].indexOf(counter) == -1){
+		el=el.slice(0, -44);
+		counter +=1;
+	}else if(counter==36){
+		el=el.slice(0, -44);
+		el +="<tr class='danger'><td><h5 style='font-weight:bold'>Elite Editions</h5></td></tr>";
+		counter +=1;			
+	}else if(counter==58){
+		el +="</div></td></tr><tr class='danger'><td><h5 style='font-weight:bold'>Europe</h5></td></tr>";	
+		counter +=1;
+	}else if(counter==81){
+		el += "</div></td></tr><tr class='danger'><td><h5 style='font-weight:bold'>Asia Pacific</h5></td></tr>";
+		counter +=1;
+	}else if(counter==117){
+		el=el.slice(0, -44);
+		el +="<tr class='danger'><td><h5 style='font-weight:bold'>Africa</h5></td></tr>";
+		counter +=1;
+	}else if(counter==153){
+		el=el.slice(0, -44);
+		el +="<tr class='danger'><td><h5 style='font-weight:bold'>Oceania</h5></td></tr>";
+		counter +=1;
+	}else if(counter==160){
+		el +="</div></td></tr><tr class='danger'><td><h5 style='font-weight:bold'>Latin America</h5></td></tr>";
+		counter +=1;
+	}else if(counter==176){
+		el +="</div></td></tr><tr class='danger'><td><h5 style='font-weight:bold'>Caribbean</h5></td></tr>";
+		counter +=1;
+	}else if(counter==188){
+		el=el.slice(0, -44);
+		el +="<tr class='danger'><td><h5 style='font-weight:bold'>North America</h5></td></tr>";
+		counter +=1;
+	}else if(counter==194){
+		el=el.slice(0, -44);
+		el +="<tr class='danger'><td><h5 style='font-weight:bold'>United States</h5></td></tr>";
+		counter +=1;
+		
+	}else if(counter==242){
+		el=el.slice(0, -44);
+		el +="<tr class='danger'><td><h5 style='font-weight:bold'>Provinces and Territories</h5></td></tr>";
+		counter +=1;
+	}else if (counter==254){
+		
+		console.log(el);
+	}
+	console.log(el);
+	$('#flags').append(el);	
+	loading=false;	
+	$('#loading').remove();
+}
+
+
+function load(){
+	var ele='';
+	
+	for (i=19; i<37; i++){
+	
+		
+	
+		
+		if(i%3==0){
+			
+			
+			ele += "<button type='button' id="+counter+" class='flag btn btn-default'><img src='assets/vendor/images/flags/"+counter+".png'height='50'></button></div></td></tr><tr><td><div class='btn-group' role='group'>";			
+			
+			
+		}else if(i == 19 ){
+			
+			
+			ele += "<tr><td><div class='btn-group' role='group'><button type='button' id="+counter+" class='flag btn btn-default'><img src='assets/vendor/images/flags/"+counter+".png'height='50'></button>";		
+			
+				
+		}else{
+			
+			ele += "<button type='button' id="+counter+" class='flag btn btn-default'><img src='assets/vendor/images/flags/"+counter+".png'height='50'></button>";
+			
+			
+		}
+		
+		
+		if([36,58,81,117,153,160,176,188,194,242,254].indexOf(counter) != -1){
+			counter +=1;
+			break;
+		}
+		
+		counter +=1;
+		
+	}
+	group(ele,counter);
+	
+}
+
 function init() {
 
 	prodImageScale = 0.4
@@ -61,6 +162,34 @@ function handleFiles(files) {
 }
 $(document).ready(function (){
 	init();
+	
+	
+	
+	//--------------infinity scroll-----------------
+	
+	$("#scroll").scroll(function(){
+		if(counter <=254){
+		var paddT = $('#scroll').innerWidth() - $('#scroll').width();
+		var currentScroll=Math.round($('#scroll').scrollTop())+paddT;
+		var maxScroll=$('#scroll')[0].scrollHeight - $('#scroll').height();
+		
+		
+		
+		
+		
+		if((maxScroll*0.65 <= currentScroll) && !loading){
+			
+			loading=true;
+
+			
+			//$('#scroll').append("<div class='danger'>loadtrueing</div>")
+			$('#scroll').scrollTop==$('#scroll').scrollHeight-$('#scroll').height;
+			load();
+		}
+		}
+	});
+	
+	
 	//-------- OPEN POPUP----------------------
     //$('[data-popup=popup-1]').fadeIn(350);
 	//$("input").css('z-index', 0);
