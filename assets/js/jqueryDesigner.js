@@ -66,10 +66,9 @@ function group(el,number){
 		el=el.slice(0, -44);
 		el +="<tr class='danger'><td><h5 style='font-weight:bold'>Provinces and Territories</h5></td></tr>";
 		counter +=1;
-	}else if (counter==254){
-		
-		console.log(el);
 	}
+	
+	
 	console.log(el);
 	$('#flags').append(el);	
 	loading=false;	
