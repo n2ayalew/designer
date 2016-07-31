@@ -186,19 +186,34 @@ $(document).ready(function (){
 			load();
 		}
 		}
+		
 	});
 	
-	
+			
 	//-------- OPEN POPUP----------------------
-    //$('[data-popup=popup-1]').fadeIn(350);
-	//$("input").css('z-index', 0);
+	
+	
+	$('#submit').on('click', function() {
+	console.log('s');
+	$('[data-popup=popup-1]').fadeIn(350);
+	$("input").css('z-index', 0);
+	});
 	//----- CLOSE POPUP--------------------
-    //$('[data-popup-close]').on('click', function(e)  {
-        //$('[data-popup=popup-1]').fadeOut(350);
+    $('[data-popup-close]').on('click', function(e)  {
+    $('[data-popup=popup-1]').fadeOut(350);
  
-        //e.preventDefault();
+       e.preventDefault();
     
-    //});
+    });
+	
+	
+	$("#checkout").on('click',function(){
+		
+		$("#terms").attr("checked") ? SubmitDesign() : $("#error").fadeIn(350);
+		
+		
+	});
+
 
 	$('.product').click(function (){
 		canvas.clear();

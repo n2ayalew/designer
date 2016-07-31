@@ -113,7 +113,7 @@
 							 <td>
 							 </td>
 							<td>
-								<button type="button" class="pull-right btn btn-primary">Submit your Design</button>
+								<button id='submit' class="pull-right btn btn-primary">Submit your Design</button>
 							</td>
 					  </tr>
 					</tbody>
@@ -881,7 +881,10 @@
 	    <div class="popup-inner">
 	        <h2>Reward Explanation</h2>
 	        <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut ac risus eget eros imperdiet posuere nec eu lectus.</p>
-	        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+	        <p> <input id="terms" type="checkbox" > I have read and understood <a>Terms and Conditions</a> and <a>Privacy policy</a>.</p></br></br>
+			<button id="checkout" type="button" class="btn btn-default" id="addText-btn">Submit and Check out</button>
+			<p id="error" style="color:red; display:none;">Please read and accept Privacy Policy and Terms and conditions.  </p>
+			<a class="popup-close" data-popup-close="popup-1" href="#">x</a>
 			
 	    </div>
 	</div>
